@@ -2,23 +2,33 @@ import random
 
 class Deck(object):
     def __init__(self):
-        suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
-        ranks = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
+        self.suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
+        self.ranks = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
         self.cards = []
 
-        for i in range (0, len(suits)):
-            for j in range (0, len(ranks)):
-                self.cards.append(ranks[j] + " of " + suits[i])
+        for i in range (0, len(self.suits)):
+            for j in range (0, len(self.ranks)):
+                self.cards.append(self.ranks[j] + " of " + self.suits[i])
 
     def shuffle(self):
         random.shuffle(self.cards)
 
-    def removeCard(self):
+    def getCard(self):
+        card = self.cards[0]
         self.cards.pop(0)
+        return card
+
+    def resetShuffle(self):
+        self.cards.clear()
+        for i in range (0, len(self.suits)):
+            for j in range (0, len(self.ranks)):
+                self.cards.append(self.ranks[j] + " of " + self.suits[i])
+        self.shuffle()
 
 if __name__ == "__main__":
 
-    deck = Deck()
-    deck.shuffle()
-    print(deck.cards[0])
-    deck.removeCard()
+    playDeck = Deck()
+    #playDeck.shuffle()
+    print(playDeck.getCard())
+    print(playDeck.getCard())
+    print(playDeck.getCard())
