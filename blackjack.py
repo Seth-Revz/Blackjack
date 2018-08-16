@@ -37,11 +37,25 @@ class Player:
         for i in range(0, len(self.hand)):
             print(self.hand[i])
 
+    def __str__(self):
+        str = "Name: "
+        str = str + self.name + "\n"
+        for i in range(0, len(self.hand)):
+            str = str + self.hand[i] + "\n"
+        
+        return str
+
+#class Game:
+#    def __init__(self):
+
 if __name__ == "__main__":
 
-    playDeck = Deck()
-    playDeck.shuffle()
-    player = Player()
-    player.drawCard(playDeck)
-    player.drawCard(playDeck)
-    player.printHand()
+    mainDeck = Deck()
+    mainDeck.shuffle()
+    #name = input("Enter your name, or don't ")
+    #player = Player(name)
+    player = Player("Seth")
+    player.drawCard(mainDeck)
+    player.drawCard(mainDeck)
+    #player.printHand()
+    print(player)
