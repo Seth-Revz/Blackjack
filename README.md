@@ -1,4 +1,4 @@
 # Blackjack
 Simple python console blackjack card game
 
->WIP
+>WIP in free time
