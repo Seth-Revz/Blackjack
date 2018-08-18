@@ -1,4 +1,5 @@
 import random
+from tkinter import *
 
 class Deck:
     def __init__(self):
@@ -37,6 +38,9 @@ class Player:
         for i in range(0, len(self.hand)):
             print(self.hand[i])
 
+    def emptyHand(self):
+        self.hand.clear()
+
     def __str__(self):
         str = "Name: "
         str = str + self.name + "\n"
@@ -50,6 +54,10 @@ class Player:
 
 if __name__ == "__main__":
 
+    mainGui = Tk()
+    mainGui.title("BlackJack")
+    mainGui.geometry('250x150')
+
     mainDeck = Deck()
     mainDeck.shuffle()
     #name = input("Enter your name, or don't ")
@@ -58,4 +66,15 @@ if __name__ == "__main__":
     player.drawCard(mainDeck)
     player.drawCard(mainDeck)
     #player.printHand()
-    print(player)
+    
+    button1 = Button(mainGui, text="Print player in console", command= lambda: print(player))
+    button2 = Button(mainGui, text="Shuffle", command= lambda: mainDeck.shuffle())
+    button3 = Button(mainGui, text="Empty Hand", command= lambda: player.emptyHand())
+    button4 = Button(mainGui, text="Draw Card", command= lambda: player.drawCard(mainDeck))
+
+    button1.pack()
+    button2.pack()
+    button3.pack()
+    button4.pack()
+
+    mainGui.mainloop()
