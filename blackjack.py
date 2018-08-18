@@ -1,5 +1,6 @@
 import random
 from tkinter import *
+from tkinter import ttk
 
 class Deck:
     def __init__(self):
@@ -64,6 +65,7 @@ if __name__ == "__main__":
     mainGui = Tk()
     mainGui.title("BlackJack")
     mainGui.geometry('250x150')
+    mainGui.iconbitmap("assets/card.ico")
 
     mainDeck = Deck()
     mainDeck.shuffle()
@@ -76,11 +78,11 @@ if __name__ == "__main__":
     player.drawCard(mainDeck)
     #player.printHand()
     
-    button1 = Button(mainGui, text="Print player in console", command= lambda: print(player))
-    button2 = Button(mainGui, text="Shuffle", command= lambda: mainDeck.shuffle())
-    button3 = Button(mainGui, text="Empty Hand", command= lambda: player.emptyHand())
-    button4 = Button(mainGui, text="Draw Card", command= lambda: player.drawCard(mainDeck))
-    button5 = Button(mainGui, text="Cards Left", command= lambda: print(mainDeck.cardsLeft()))
+    button1 = ttk.Button(mainGui, text="Print player in console", command= lambda: print(player))
+    button2 = ttk.Button(mainGui, text="Shuffle", command= lambda: mainDeck.shuffle())
+    button3 = ttk.Button(mainGui, text="Empty Hand", command= lambda: player.emptyHand())
+    button4 = ttk.Button(mainGui, text="Draw Card", command= lambda: player.drawCard(mainDeck))
+    button5 = ttk.Button(mainGui, text="Cards Left", command= lambda: print(mainDeck.cardsLeft()))
 
     button1.pack()
     button2.pack()
