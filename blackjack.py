@@ -15,9 +15,16 @@ class Deck:
         random.shuffle(self.cards)
 
     def getCard(self):
+        if not self.cards:
+            self.resetShuffle()
+            print("Deck Empty: Reshuffling then drawing")
+        
         card = self.cards[0]
         self.cards.pop(0)
         return card
+
+    def cardsLeft(self):
+        return len(self.cards)
 
     def resetShuffle(self):
         self.cards.clear()
@@ -42,7 +49,7 @@ class Player:
         self.hand.clear()
 
     def __str__(self):
-        str = "Name: "
+        str = "\nName: "
         str = str + self.name + "\n"
         for i in range(0, len(self.hand)):
             str = str + self.hand[i] + "\n"
@@ -60,6 +67,8 @@ if __name__ == "__main__":
 
     mainDeck = Deck()
     mainDeck.shuffle()
+    print(mainDeck.cardsLeft())
+
     #name = input("Enter your name, or don't ")
     #player = Player(name)
     player = Player("Seth")
@@ -71,10 +80,12 @@ if __name__ == "__main__":
     button2 = Button(mainGui, text="Shuffle", command= lambda: mainDeck.shuffle())
     button3 = Button(mainGui, text="Empty Hand", command= lambda: player.emptyHand())
     button4 = Button(mainGui, text="Draw Card", command= lambda: player.drawCard(mainDeck))
+    button5 = Button(mainGui, text="Cards Left", command= lambda: print(mainDeck.cardsLeft()))
 
     button1.pack()
     button2.pack()
     button3.pack()
     button4.pack()
+    button5.pack()
 
     mainGui.mainloop()
