@@ -62,14 +62,36 @@ class Player:
 #class Game:
 #    def __init__(self):
 
+class Application(ttk.Frame):
+    def __init__(self, master=None):
+        ttk.Frame.__init__(self, master)
+        self.grid()
+        self.createWidgets()
+    
+    def createWidgets(self):
+        self.quitButton = ttk.Button(self, text='Quit', command=self.quit) 
+        self.printPlayerButton = ttk.Button(self, text="Print player in console", command= lambda: print(player))
+        self.shuffleDeckButton = ttk.Button(self, text="Shuffle", command= lambda: mainDeck.shuffle())
+        self.emptyHandButton = ttk.Button(self, text="Empty Hand", command= lambda: player.emptyHand())
+        self.drawCardButton = ttk.Button(self, text="Draw Card", command= lambda: player.drawCard(mainDeck))
+        self.cardsLeftButton = ttk.Button(self, text="Cards Left", command= lambda: print(mainDeck.cardsLeft()))
+        self.quitButton.grid(row=1, column=1)
+        self.printPlayerButton.grid(row=3, column=2)
+        self.shuffleDeckButton.grid(row=1, column=2, sticky="w")
+        self.emptyHandButton.grid(row=2, column=2, sticky="w")
+        self.drawCardButton.grid(row=2, column=1)
+        self.cardsLeftButton.grid(row=3, column=1)
+
 def get_script_path():
     return os.path.dirname(os.path.realpath(sys.argv[0]))
+
 if __name__ == "__main__":
 
-    mainGui = Tk()
-    mainGui.title("BlackJack")
-    mainGui.geometry('250x150')
-    mainGui.iconbitmap(get_script_path() + "/assets/card.ico")
+    app = Application()
+    app.master.title("BlackJack")
+    app.master.geometry('250x150')
+    app.master.iconbitmap(get_script_path() + "/assets/card.ico")
+    
     mainDeck = Deck()
     mainDeck.shuffle()
     print(mainDeck.cardsLeft())
@@ -80,17 +102,8 @@ if __name__ == "__main__":
     player.drawCard(mainDeck)
     player.drawCard(mainDeck)
     #player.printHand()
-    
-    button1 = ttk.Button(mainGui, text="Print player in console", command= lambda: print(player))
-    button2 = ttk.Button(mainGui, text="Shuffle", command= lambda: mainDeck.shuffle())
-    button3 = ttk.Button(mainGui, text="Empty Hand", command= lambda: player.emptyHand())
-    button4 = ttk.Button(mainGui, text="Draw Card", command= lambda: player.drawCard(mainDeck))
-    button5 = ttk.Button(mainGui, text="Cards Left", command= lambda: print(mainDeck.cardsLeft()))
 
-    button1.pack()
-    button2.pack()
-    button3.pack()
-    button4.pack()
-    button5.pack()
+    style = ttk.Style()
+    style.theme_use("vista")
 
-    mainGui.mainloop()
+    app.mainloop()
