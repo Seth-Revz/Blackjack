@@ -1,4 +1,6 @@
 import random
+import sys
+import os
 from tkinter import *
 from tkinter import ttk
 
@@ -60,13 +62,14 @@ class Player:
 #class Game:
 #    def __init__(self):
 
+def get_script_path():
+    return os.path.dirname(os.path.realpath(sys.argv[0]))
 if __name__ == "__main__":
 
     mainGui = Tk()
     mainGui.title("BlackJack")
     mainGui.geometry('250x150')
-    mainGui.iconbitmap("assets/card.ico")
-
+    mainGui.iconbitmap(get_script_path() + "/assets/card.ico")
     mainDeck = Deck()
     mainDeck.shuffle()
     print(mainDeck.cardsLeft())
