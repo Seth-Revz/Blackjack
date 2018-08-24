@@ -5,7 +5,7 @@ from player import Player
 from deck import Deck
 from tkinter import *
 from tkinter import ttk
-
+'''
 class Application(ttk.Frame):
     def __init__(self, master=None):
         ttk.Frame.__init__(self, master)
@@ -25,17 +25,17 @@ class Application(ttk.Frame):
         self.emptyHandButton.grid(row=2, column=2, sticky="w")
         self.drawCardButton.grid(row=2, column=1)
         self.cardsLeftButton.grid(row=3, column=1)
-
-def get_script_path():
-    return os.path.dirname(os.path.realpath(sys.argv[0]))
+'''
 
 if __name__ == "__main__":
 
+    '''
     app = Application()
     app.master.title("BlackJack")
     app.master.geometry('250x150')
-    app.master.iconbitmap(get_script_path() + "/assets/card.ico")
-    
+    app.master.iconbitmap("assets/card.ico")
+    '''
+
     mainDeck = Deck()
     mainDeck.shuffle()
     print(mainDeck.cardsLeft())
@@ -47,7 +47,8 @@ if __name__ == "__main__":
     player.drawCard(mainDeck)
     #player.printHand()
 
+    '''
     style = ttk.Style()
     style.theme_use("vista")
-
     app.mainloop()
+    '''
