@@ -1,10 +1,9 @@
-
-import sys
-import os
 from player import Player
 from deck import Deck
-from tkinter import *
-from tkinter import ttk
+from game import Game
+
+#from tkinter import *
+#from tkinter import ttk
 '''
 class Application(ttk.Frame):
     def __init__(self, master=None):
@@ -35,17 +34,14 @@ if __name__ == "__main__":
     app.master.geometry('250x150')
     app.master.iconbitmap("assets/card.ico")
     '''
+    while True:
+        newGame = Game()
+        newGame.play()
+        again = input("Press enter to play again\nEnter q to quit")
 
-    mainDeck = Deck()
-    mainDeck.shuffle()
-    print(mainDeck.cardsLeft())
+        if again == 'q':
+            break
 
-    #name = input("Enter your name, or don't ")
-    #player = Player(name)
-    player = Player("Seth")
-    player.drawCard(mainDeck)
-    player.drawCard(mainDeck)
-    #player.printHand()
 
     '''
     style = ttk.Style()
